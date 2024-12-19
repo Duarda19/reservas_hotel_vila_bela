@@ -1,0 +1,21 @@
+-- seleciona o banco de dados 
+USE site_hotel;
+
+-- Estrutura da tabela 'quarto'
+CREATE TABLE quarto (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    numero INT NOT NULL,              
+    status BOOLEAN NOT NULL DEFAULT FALSE, 
+    tipo VARCHAR(50) NOT NULL,        
+    preco_noite DECIMAL(10, 2) NOT NULL
+);
+
+-- Estrutura da tabela 'reserva'
+CREATE TABLE reserva (
+    id INT AUTO_INCREMENT PRIMARY KEY,       
+    id_quarto INT NOT NULL,                  
+    nome_hospede VARCHAR(100) NOT NULL,      
+    dt_entrada DATE NOT NULL,                
+    dt_saida DATE NOT NULL,                  
+    FOREIGN KEY (id_quarto) REFERENCES quarto(id) ON DELETE CASCADE
+);
